@@ -5,13 +5,13 @@ class Controller
 
   public function model()
   {
-    require_once '../app/Models/' . $models . '.php';
+    require_once MODELS_FOLDER . $models . '.php';
     return new $model;
   }
 
   public function view($view, $dados = [])
   {
-    $arquivo = ('../app/Views/' . $view . '.php');
+    $arquivo = (VIEWS_FOLDER . $view . '.php');
     if (file_exists($arquivo)) :
       require_once $arquivo;
     else:

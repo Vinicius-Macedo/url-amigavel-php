@@ -21,13 +21,13 @@ class Rotas
     $url = $this->checkController($url);
 
     // CRIAR UMA CLASSE PARA ACESSAR OS MÉTODOS DO CONTROLLER
-    require_once '../app/Controllers/' . $this->controller . '.php';
+    require_once CONTROLLERS_FOLDER . $this->controller . '.php';
     $this->controller = new $this->controller();
 
     // CHECA SE $render existe e seta
     $url = $this->checkRender($url);
 
-
+    // EXECUTA AS FUNÇÕES DE RENDERIZAÇÃO DO CONTROLLER
     $this->parameters = $url ? array_values($url) : [];
     call_user_func_array([$this->controller, $this->render], $this->parameters);
   }
@@ -39,14 +39,14 @@ class Rotas
     if (isset($url)) :
       $url = trim(rtrim($url, '/'));
       $url = explode('/', $url);
-      return $url;
+      return $url;      
     endif;
   }
 
   // CHECA SE $controller EXISTE E SETA
   private function checkController($url)
   {
-    if (file_exists('../app/Controllers/' . ucwords($url[0]) . '.php')) :
+    if (file_exists(CONTROLLERS_FOLDER . ucwords($url[0]) . '.php')) :
       $this->controller = ucwords($url[0]);
       // ELIMA O VALOR [0] PARA NÃO SER INSERIDO EM PARAMETERS MAIS A FRENTE NO __CONSTRUCT
       unset($url[0]);

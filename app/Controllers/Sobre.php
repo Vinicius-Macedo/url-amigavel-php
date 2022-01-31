@@ -1,10 +1,10 @@
 <?php 
 
-class Paginas extends Controller {
+class Sobre extends Controller {
 
   public function index() {
-    $this->view('Templates/header', ['titulo' => 'Home']);
-    $this->view('Pages/home');
+    $this->view('Templates/header', ['titulo' => 'Sobre']);
+    $this->view('Pages/sobre');
     $this->view('Templates/footer');
   }
 
