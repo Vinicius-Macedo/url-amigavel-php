@@ -1,21 +1,20 @@
 <?php
 
-// ESSA CLASSE CHECA A URL E CHAMA OS ARQUIVOS E MÉTODOS CORRESPONDENTES
+// ESSA CLASSE CHECA A URL E CHAMA OS ARQUIVOS E MÉTODOS CORRESPONDENTES DO CONTROLLER
 class Rotas
 {
-
   // // PARÂMETROS PARA OS CONTROLLERS NO SITE
-  // O ARQUIVO CASO NÃO SETADO
-  private $controller = 'Paginas';
-  // O MÉTODO CASO NÃO SETADO
-  private $render = 'index';
-  // OS PARÂMETROS CASO NÃO SETADO
+  // O ARQUIVO
+  private $controller;
+  // O MÉTODO
+  private $render;
+  // OS PARÂMETROS
   private $parameters = [];
 
   // CHAMA E CHECA OS CONTROLLERS
   public function __construct()
   {
-    // EVITAR ERROS CASO OS METÓDOS TENTEM CHECAR O INDICE DE UM TIPO NULL;
+    // PEGA A URL SANITIZA E FORMATA ELA | EVITAR ERROS CASO ADIANTE OS METÓDOS TENTEM CHECAR O INDICE DE UM TIPO NULL;
     $url = $this->getUrl() ? $this->getUrl() : [0];
     // CHECA OS CONTROLLERS
     $url = $this->checkController($url);
@@ -39,7 +38,7 @@ class Rotas
     if (isset($url)) :
       $url = trim(rtrim($url, '/'));
       $url = explode('/', $url);
-      return $url;      
+      return $url;
     endif;
   }
 
@@ -50,8 +49,12 @@ class Rotas
       $this->controller = ucwords($url[0]);
       // ELIMA O VALOR [0] PARA NÃO SER INSERIDO EM PARAMETERS MAIS A FRENTE NO __CONSTRUCT
       unset($url[0]);
-      return $url;
+    elseif ($url == [0]) :
+      $this->controller = 'Home';
+    else :
+      $this->controller = 'Notfound';
     endif;
+    return $url;
   }
 
   // CHECAR SE  $render EXISTE E SETA
@@ -62,8 +65,12 @@ class Rotas
         $this->render = $url[1];
         // ELIMA O VALOR [0] PARA NÃO SER INSERIDO EM PARAMETERS MAIS A FRENTE NO __CONSTRUCT
         unset($url[1]);
-        return $url;
+      else :
+        $this->render = 'notfound';
       endif;
+    else :
+      $this->render = 'index';
     endif;
+    return $url;
   }
 }

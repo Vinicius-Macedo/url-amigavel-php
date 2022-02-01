@@ -5,9 +5,18 @@ class Sobre extends Controller {
   public function index() {
     $this->view('Templates/header', ['titulo' => 'Sobre']);
     $this->view('Pages/sobre');
-    $this->view('Templates/footer');
   }
 
+  public function empresa() {
+    $this->view('Templates/header', ['titulo' => 'Sobre - emrpresa']);
+    $this->view('Pages/sobre/empresa');
+  }
+  
+  public function notfound()
+  {
+    $this->view('Templates/header', ['titulo' => 'Página não encontrada']);
+    $this->view('Pages/404');
+  }
 }
 
 // CONTROLER CLASS

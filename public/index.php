@@ -1,7 +1,7 @@
 <?php
 include './../app/config.php';
-include './../app/Lib/Rotas.php';
-include './../app/Lib/Controller.php';
+include LIB_FOLDER.'Rotas.php';
+include LIB_FOLDER.'Controller.php';
 
 ?>
 
@@ -11,8 +11,8 @@ include './../app/Lib/Controller.php';
 
 
   <?php
-      $rotas = new Rotas();
-
+     $rotas = new Rotas();
+     include_once VIEWS_FOLDER.'Templates/footer.php';
   ?>
 
 
