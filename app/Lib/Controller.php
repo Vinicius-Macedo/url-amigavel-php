@@ -18,4 +18,10 @@ class Controller
       die('O arquivo de view não existe!');
     endif;
   }
+
+  public function notfound()
+  {
+    $this->view('Templates/header', ['titulo' => 'Página não encontrada']);
+    $this->view('Pages/404');
+  }
 }

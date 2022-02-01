@@ -2,7 +2,8 @@
 include './../app/config.php';
 include LIB_FOLDER.'Rotas.php';
 include LIB_FOLDER.'Controller.php';
-
+include LIB_FOLDER.'Database.php';
+$db = new Database;
 ?>
 
 

@@ -12,11 +12,7 @@ class Sobre extends Controller {
     $this->view('Pages/sobre/empresa');
   }
   
-  public function notfound()
-  {
-    $this->view('Templates/header', ['titulo' => 'Página não encontrada']);
-    $this->view('Pages/404');
-  }
+  
 }
 
 // CONTROLER CLASS
